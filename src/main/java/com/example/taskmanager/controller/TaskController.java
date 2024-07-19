@@ -25,6 +25,11 @@ public class TaskController {
         return taskService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public List<Task> getTasksFromUserId(@PathVariable UUID id) {
+        return taskService.findByUserId(id);
+    }
+
     @PostMapping("/{id}")
     public Task createTask(@PathVariable UUID id, @RequestBody Task task) {
         User user = userService.findById(id)

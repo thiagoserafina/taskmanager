@@ -5,6 +5,7 @@ import com.example.taskmanager.model.User;
 import com.example.taskmanager.service.TaskService;
 import com.example.taskmanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteTask(@PathVariable UUID id) {
         taskService.delete(id);
+        return ResponseEntity.ok("Tarefa excluída com sucesso!");
     }
 }

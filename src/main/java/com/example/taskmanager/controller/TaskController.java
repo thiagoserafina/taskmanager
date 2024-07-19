@@ -1,8 +1,11 @@
 package com.example.taskmanager.controller;
 
 import com.example.taskmanager.model.Task;
+import com.example.taskmanager.model.User;
 import com.example.taskmanager.service.TaskService;
+import com.example.taskmanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,13 +17,25 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public List<Task> getAllTasks() {
         return taskService.findAll();
     }
 
-    @PostMapping
-    public Task createTask(@RequestBody Task task) {
+    @GetMapping("/{id}")
+    public List<Task> getTasksFromUserId(@PathVariable UUID id) {
+        return taskService.findByUserId(id);
+    }
+
+    @PostMapping("/{id}")
+    public Task createTask(@PathVariable UUID id, @RequestBody Task task) {
+        User user = userService.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
+
+        task.setUser(user);
         return taskService.save(task);
     }
 

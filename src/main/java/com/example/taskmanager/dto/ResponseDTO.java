@@ -1,3 +1,5 @@
 package com.example.taskmanager.dto;
 
-public record ResponseDTO (String name, String token) { }
+import java.util.UUID;
+
+public record ResponseDTO (UUID id, String name, String token) { }

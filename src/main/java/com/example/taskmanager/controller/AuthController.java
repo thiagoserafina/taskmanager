@@ -22,7 +22,11 @@ public class AuthController {
     private final TokenService tokenService;
 
     @PostMapping("/login")
+    // Não reutilizar DTOs para diferentes endpoints
+    // pois cada endpoint pode ter campos diferentes ao longo do tempo
     public ResponseEntity<ResponseDTO> login(@RequestBody LoginRequestDTO body) {
+        // A responsabilidade do controller é apenas de receber a requisição e enviar a resposta
+        // Qualquer lógica de negócio deve ser feita em um service
         User user = this.repository.findByUsername(body.username()).orElseThrow(() -> new RuntimeException("User not found"));
         if (passwordEncoder.matches(body.password(), user.getPassword())) {
             String token = this.tokenService.generateToken(user);
@@ -32,7 +36,11 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    // Não reutilizar DTOs para diferentes endpoints
+    // pois cada endpoint pode ter campos diferentes ao longo do tempo
     public ResponseEntity<ResponseDTO> register(@RequestBody RegisterRequestDTO body) {
+        // A responsabilidade do controller é apenas de receber a requisição e enviar a resposta
+        // Qualquer lógica de negócio deve ser feita em um service
         Optional<User> user = this.repository.findByUsername(body.username());
 
         if (user.isEmpty()) {

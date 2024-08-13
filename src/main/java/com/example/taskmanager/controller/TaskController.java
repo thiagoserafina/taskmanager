@@ -15,9 +15,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
+    // dar preferencia a injeção de dependencia por construtor, e não por atributo
     @Autowired
     private TaskService taskService;
 
+    // dar preferencia a injeção de dependencia por construtor, e não por atributo
     @Autowired
     private UserService userService;
 

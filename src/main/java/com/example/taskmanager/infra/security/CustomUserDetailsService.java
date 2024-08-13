@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     private UserRepository repository;
 

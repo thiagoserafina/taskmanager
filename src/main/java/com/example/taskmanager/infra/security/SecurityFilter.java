@@ -18,8 +18,10 @@ import java.util.Collections;
 
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     TokenService tokenService;
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     UserRepository userRepository;
 

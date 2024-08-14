@@ -19,9 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     SecurityFilter securityFilter;
 

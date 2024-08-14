@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Service
 public class TaskService {
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     private TaskRepository taskRepository;
 

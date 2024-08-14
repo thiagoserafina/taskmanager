@@ -21,9 +21,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    // idealmente devem ser adicionados constraints de tamanho máximo e mínimo com o @Size
+    // Ex: @Size(min = 3, max = 50)
     @Column(nullable = false)
     private String name;
 
+    // idealmente devem ser adicionados constraints de tamanho máximo e mínimo com o @Size
+    // Ex: @Size(min = 3, max = 50)
+    // idealmente devem ser adicionados constraints de unicidade com o @Column(unique = true)
     @Column(nullable = false)
     private String username;
 

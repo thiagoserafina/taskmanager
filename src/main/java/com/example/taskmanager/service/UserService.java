@@ -10,9 +10,11 @@ import java.util.UUID;
 
 @Service
 public class UserService {
+    // dar preferencia a injeção de dependencia por construtor
     @Autowired
     private UserRepository userRepository;
 
+    // sempre excluir código não utilizado
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -21,6 +23,7 @@ public class UserService {
         return userRepository.findById(userId);
     }
 
+    // sempre excluir código não utilizado
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
